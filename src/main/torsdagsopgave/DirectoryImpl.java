@@ -33,19 +33,5 @@ public class DirectoryImpl extends DirectoryEntryImpl implements Directory {
             }
         });
         return sortedChildren;
-        /*
-        ArrayList<DirectoryEntry> result = new ArrayList<>();
-        for (DirectoryEntry entry : getChildren()) {
-            if (entry.isDirectory()) {
-                result.add(entry);
-            }
-        }
-        for (DirectoryEntry entry : getChildren()) {
-            if (entry.isFile()) {
-                result.add(entry);
-            }
-        }
-        return result;
-         */
     }
 }
