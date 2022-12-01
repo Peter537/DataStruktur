@@ -22,15 +22,16 @@ public class DirectoryEntryExample {
             System.out.println("Vil du forlade programmet? (ja/nej)");
             String choice = scanner.nextLine();
             if (choice.equalsIgnoreCase("ja")) {
-                System.out.println("Forkert svar. Prøv igen.");
                 break;
             } else if (choice.equalsIgnoreCase("nej")) {
                 inDirectory(root);
+            } else {
+                System.out.println("Forkert svar. Prøv igen.");
             }
         }
     }
 
-    public void inDirectory(Directory directory) {
+    private void inDirectory(Directory directory) {
         while (true) {
             try {
                 System.out.println("Du er i " + directory.getName());
@@ -72,7 +73,7 @@ public class DirectoryEntryExample {
         }
     }
 
-    public void showDirectory(Directory directory) {
+    private void showDirectory(Directory directory) {
         System.out.println("Indhold af " + directory.getName() + ":");
         int i = 1;
         for (DirectoryEntry entry : getDirectoryList(directory)) {
@@ -81,7 +82,7 @@ public class DirectoryEntryExample {
         }
     }
 
-    public void chooseDirectoryOrFile(Directory currentDirectory) {
+    private void chooseDirectoryOrFile(Directory currentDirectory) {
         while (true) {
             try {
                 System.out.println("Indhold af " + currentDirectory.getName() + ":");
@@ -119,7 +120,7 @@ public class DirectoryEntryExample {
         }
     }
 
-    public void showFile(File file) {
+    private void showFile(File file) {
         while (true) {
             try {
                 System.out.println("Indhold af " + file.getName() + ":");
@@ -148,7 +149,7 @@ public class DirectoryEntryExample {
         }
     }
 
-    public File createFile() {
+    private File createFile() {
         System.out.print("Skriv filnavn: ");
         String name = scanner.nextLine();
         System.out.print("Skriv filindhold: ");
@@ -156,19 +157,19 @@ public class DirectoryEntryExample {
         return new FileImpl(name, content);
     }
 
-    public Directory createDirectory() {
+    private Directory createDirectory() {
         System.out.print("Skriv directorynavn: ");
         String name = scanner.nextLine();
         return new DirectoryImpl(name);
     }
 
-    public void pressEnterToContinue() {
+    private void pressEnterToContinue() {
         System.out.println();
         System.out.println("Tryk enter for at fortsætte");
         scanner.nextLine();
     }
 
-    public ArrayList<DirectoryEntry> getDirectoryList(Directory directory) {
+    private ArrayList<DirectoryEntry> getDirectoryList(Directory directory) {
         ArrayList<DirectoryEntry> result = new ArrayList<>();
         for (DirectoryEntry entry : directory.getChildren()) {
             if (entry.isDirectory()) {
