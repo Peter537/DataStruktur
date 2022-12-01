@@ -30,7 +30,7 @@ public abstract class DirectoryEntryImpl implements DirectoryEntry {
     @Override
     public File asFile() {
         if (!this.isFile()) {
-            throw new RuntimeException("Not a file");
+            throw new IllegalStateException("Not a file");
         }
         return (File) this;
     }
@@ -38,7 +38,7 @@ public abstract class DirectoryEntryImpl implements DirectoryEntry {
     @Override
     public Directory asDirectory() {
         if (!this.isDirectory()) {
-            throw new RuntimeException("Not a directory");
+            throw new IllegalStateException("Not a directory");
         }
         return (Directory) this;
     }

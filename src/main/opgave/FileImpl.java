@@ -2,7 +2,7 @@ package main.opgave;
 
 public class FileImpl extends DirectoryEntryImpl implements File {
 
-    private final String content;
+    private String content;
 
     public FileImpl(String name, String content) {
         super(name, false, true);
@@ -12,5 +12,10 @@ public class FileImpl extends DirectoryEntryImpl implements File {
     @Override
     public String getContent() {
         return this.content;
+    }
+
+    @Override
+    public void setContent(String content) {
+        this.content = content;
     }
 }
