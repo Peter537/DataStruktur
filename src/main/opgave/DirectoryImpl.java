@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 public class DirectoryImpl extends DirectoryEntryImpl implements Directory {
 
-    private final ArrayList<DirectoryEntry> children;
+    private final ArrayList<DirectoryEntry> children = new ArrayList<>();
 
     public DirectoryImpl(String name) {
         super(name, true, false);
-        this.children = new ArrayList<>();
     }
 
     @Override
