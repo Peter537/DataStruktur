@@ -19,4 +19,33 @@ public class DirectoryImpl extends DirectoryEntryImpl implements Directory {
     public Iterable<DirectoryEntry> getChildren() {
         return this.children;
     }
+
+    @Override
+    public ArrayList<DirectoryEntry> getSortedChildren() {
+        ArrayList<DirectoryEntry> sortedChildren = new ArrayList<>(this.children);
+        sortedChildren.sort((o1, o2) -> {
+            if (o1.isDirectory() && o2.isFile()) {
+                return -1;
+            } else if (o1.isFile() && o2.isDirectory()) {
+                return 1;
+            } else {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        return sortedChildren;
+        /*
+        ArrayList<DirectoryEntry> result = new ArrayList<>();
+        for (DirectoryEntry entry : getChildren()) {
+            if (entry.isDirectory()) {
+                result.add(entry);
+            }
+        }
+        for (DirectoryEntry entry : getChildren()) {
+            if (entry.isFile()) {
+                result.add(entry);
+            }
+        }
+        return result;
+         */
+    }
 }
