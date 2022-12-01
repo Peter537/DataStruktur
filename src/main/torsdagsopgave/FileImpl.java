@@ -1,4 +1,4 @@
-package main.opgave;
+package main.torsdagsopgave;
 
 public class FileImpl extends DirectoryEntryImpl implements File {
 

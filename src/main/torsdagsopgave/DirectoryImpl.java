@@ -1,4 +1,4 @@
-package main.opgave;
+package main.torsdagsopgave;
 
 import java.util.ArrayList;
 

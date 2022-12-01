@@ -1,6 +1,6 @@
-package main.opgave.examples;
+package main.torsdagsopgave.examples;
 
-import main.opgave.*;
+import main.torsdagsopgave.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
