@@ -76,8 +76,8 @@ public class DirectoryEntryExample {
     private void showDirectory(Directory directory) {
         System.out.println("Indhold af " + directory.getName() + ":");
         int i = 1;
-        for (DirectoryEntry entry : getDirectoryList(directory)) {
-            System.out.println("  " + i + ") " + entry.getName() + " (" + (entry.isDirectory() ? "mappe" : "fil") + ")");
+        for (DirectoryEntry entry : directory.getSortedChildren()) {
+            System.out.println("  " + i + ") " + entry.getName());
             i++;
         }
     }
@@ -86,7 +86,7 @@ public class DirectoryEntryExample {
         while (true) {
             try {
                 System.out.println("Indhold af " + currentDirectory.getName() + ":");
-                ArrayList<DirectoryEntry> entries = getDirectoryList(currentDirectory);
+                ArrayList<DirectoryEntry> entries = currentDirectory.getSortedChildren();
                 int i = 1;
                 for (DirectoryEntry entry : entries) {
                     System.out.println("  " + i + ") " + entry.getName() + " (" + (entry.isDirectory() ? "mappe" : "fil") + ")");
@@ -167,20 +167,5 @@ public class DirectoryEntryExample {
         System.out.println();
         System.out.println("Tryk enter for at fortsætte");
         scanner.nextLine();
-    }
-
-    private ArrayList<DirectoryEntry> getDirectoryList(Directory directory) {
-        ArrayList<DirectoryEntry> result = new ArrayList<>();
-        for (DirectoryEntry entry : directory.getChildren()) {
-            if (entry.isDirectory()) {
-                result.add(entry);
-            }
-        }
-        for (DirectoryEntry entry : directory.getChildren()) {
-            if (entry.isFile()) {
-                result.add(entry);
-            }
-        }
-        return result;
     }
 }
