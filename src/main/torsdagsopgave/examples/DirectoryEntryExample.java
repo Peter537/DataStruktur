@@ -50,14 +50,18 @@ public class DirectoryEntryExample {
                     }
                     case 1 -> {
                         File createdFile = createFile();
-                        directory.addChild(createdFile);
-                        System.out.println("Filen " + createdFile.getName() + " er oprettet.");
+                        if (createdFile != null) {
+                            directory.addChild(createdFile);
+                            System.out.println("Filen " + createdFile.getName() + " er oprettet.");
+                        }
                         pressEnterToContinue();
                     }
                     case 2 -> {
                         Directory createdDirectory = createDirectory();
-                        directory.addChild(createdDirectory);
-                        System.out.println("Mappen " + createdDirectory.getName() + " er oprettet.");
+                        if (createdDirectory != null) {
+                            directory.addChild(createdDirectory);
+                            System.out.println("Mappen " + createdDirectory.getName() + " er oprettet.");
+                        }
                         pressEnterToContinue();
                     }
                     case 3 -> {
@@ -150,16 +154,25 @@ public class DirectoryEntryExample {
     }
 
     private File createFile() {
-        System.out.print("Skriv filnavn: ");
+        System.out.print("Skriv filnavn (ENTER for tilbage): ");
         String name = scanner.nextLine();
-        System.out.print("Skriv filindhold: ");
+        if (name.equals("")) {
+            return null;
+        }
+        System.out.print("Skriv filindhold (ENTER for tilbage): ");
         String content = scanner.nextLine();
+        if (content.equals("")) {
+            return null;
+        }
         return new FileImpl(name, content);
     }
 
     private Directory createDirectory() {
-        System.out.print("Skriv directorynavn: ");
+        System.out.print("Skriv directorynavn (ENTER for tilbage): ");
         String name = scanner.nextLine();
+        if (name.equals("")) {
+            return null;
+        }
         return new DirectoryImpl(name);
     }
 
