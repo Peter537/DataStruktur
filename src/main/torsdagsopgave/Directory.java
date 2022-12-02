@@ -1,10 +1,13 @@
 package main.torsdagsopgave;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public interface Directory extends DirectoryEntry, Iterable<DirectoryEntry> {
 
-	void addChild(DirectoryEntry entry);
+	File createFile(String name, String content) throws IOException;
+
+	Directory createSubDirectory(String name) throws IOException;
 
 	ArrayList<DirectoryEntry> getSortedChildren();
 
