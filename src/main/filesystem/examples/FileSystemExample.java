@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class DirectoryEntryExample {
+public class FileSystemExample {
 
     private final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        DirectoryEntryExample example = new DirectoryEntryExample();
+        FileSystemExample example = new FileSystemExample();
         example.run();
     }
 
