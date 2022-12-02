@@ -1,7 +1,7 @@
-package main.torsdagsopgave.examples;
+package main.filesystem.examples;
 
-import main.torsdagsopgave.*;
-import main.torsdagsopgave.impl.FileSystemImpl;
+import main.filesystem.*;
+import main.filesystem.impl.FileSystemImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;

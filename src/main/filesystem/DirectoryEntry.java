@@ -1,4 +1,4 @@
-package main.torsdagsopgave;
+package main.filesystem;
 
 public interface DirectoryEntry {
 

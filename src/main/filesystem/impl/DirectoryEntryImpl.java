@@ -1,7 +1,7 @@
-package main.torsdagsopgave.impl;
+package main.filesystem.impl;
 
-import main.torsdagsopgave.Directory;
-import main.torsdagsopgave.DirectoryEntry;
+import main.filesystem.Directory;
+import main.filesystem.DirectoryEntry;
 
 abstract class DirectoryEntryImpl implements DirectoryEntry {
 

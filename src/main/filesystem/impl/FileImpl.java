@@ -1,7 +1,7 @@
-package main.torsdagsopgave.impl;
+package main.filesystem.impl;
 
-import main.torsdagsopgave.Directory;
-import main.torsdagsopgave.File;
+import main.filesystem.Directory;
+import main.filesystem.File;
 
 class FileImpl extends DirectoryEntryImpl implements File {
 

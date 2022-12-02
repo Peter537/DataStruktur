@@ -1,7 +1,7 @@
-package main.torsdagsopgave.impl;
+package main.filesystem.impl;
 
-import main.torsdagsopgave.Directory;
-import main.torsdagsopgave.FileSystem;
+import main.filesystem.Directory;
+import main.filesystem.FileSystem;
 
 public class FileSystemImpl implements FileSystem {
 

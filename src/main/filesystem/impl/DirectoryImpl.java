@@ -1,8 +1,8 @@
-package main.torsdagsopgave.impl;
+package main.filesystem.impl;
 
-import main.torsdagsopgave.Directory;
-import main.torsdagsopgave.DirectoryEntry;
-import main.torsdagsopgave.File;
+import main.filesystem.Directory;
+import main.filesystem.DirectoryEntry;
+import main.filesystem.File;
 
 import java.io.IOException;
 import java.util.ArrayList;

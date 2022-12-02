@@ -1,4 +1,4 @@
-package main.torsdagsopgave;
+package main.filesystem;
 
 import java.io.IOException;
 import java.util.ArrayList;
