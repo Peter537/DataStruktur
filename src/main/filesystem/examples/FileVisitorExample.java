@@ -1,8 +1,6 @@
 package main.filesystem.examples;
 
 import main.filesystem.Directory;
-import main.filesystem.DirectoryEntryVisitor;
-import main.filesystem.File;
 import main.filesystem.FileSystem;
 import main.filesystem.impl.FileSystemImpl;
 
