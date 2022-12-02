@@ -1,6 +1,7 @@
 package main.torsdagsopgave;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class DirectoryImpl extends DirectoryEntryImpl implements Directory {
 
@@ -31,26 +32,6 @@ public class DirectoryImpl extends DirectoryEntryImpl implements Directory {
     }
 
     @Override
-    public boolean containsFileNamed(String name) {
-    	for (DirectoryEntry entry : this.children) {
-    		if (entry.isFile() && entry.getName().equalsIgnoreCase(name)) {
-    			return true;
-    		}
-    	}
-    	return false;
-    }
-
-    @Override
-    public boolean containsDirectoryNamed(String name) {
-    	for (DirectoryEntry entry : this.children) {
-    		if (entry.isDirectory() && entry.getName().equalsIgnoreCase(name)) {
-    			return true;
-    		}
-    	}
-    	return false;
-    }
-
-    @Override
     public boolean isDirectory() {
         return true;
     }
@@ -68,5 +49,10 @@ public class DirectoryImpl extends DirectoryEntryImpl implements Directory {
     @Override
     public Directory asDirectory() {
         return this;
+    }
+
+    @Override
+    public Iterator<DirectoryEntry> iterator() {
+        return children.iterator();
     }
 }
