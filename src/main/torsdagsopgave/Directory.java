@@ -9,4 +9,8 @@ public interface Directory extends DirectoryEntry {
 	Iterable<DirectoryEntry> getChildren();
 
 	ArrayList<DirectoryEntry> getSortedChildren();
+
+	boolean containsFileNamed(String name);
+
+	boolean containsDirectoryNamed(String name);
 }
