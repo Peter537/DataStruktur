@@ -51,16 +51,24 @@ public class DirectoryEntryExample {
                     case 1 -> {
                         File createdFile = createFile();
                         if (createdFile != null) {
-                            directory.addChild(createdFile);
-                            System.out.println("Filen " + createdFile.getName() + " er oprettet.");
+                            if (directory.containsFileNamed(createdFile.getName())) {
+                                System.out.println("Der findes allerede en fil med navnet " + createdFile.getName());
+                            } else {
+                                directory.addChild(createdFile);
+                                System.out.println("Filen " + createdFile.getName() + " blev oprettet.");
+                            }
                         }
                         pressEnterToContinue();
                     }
                     case 2 -> {
                         Directory createdDirectory = createDirectory();
                         if (createdDirectory != null) {
-                            directory.addChild(createdDirectory);
-                            System.out.println("Mappen " + createdDirectory.getName() + " er oprettet.");
+                            if (directory.containsDirectoryNamed(createdDirectory.getName())) {
+                                System.out.println("Der findes allerede en mappe med navnet " + createdDirectory.getName());
+                            } else {
+                                directory.addChild(createdDirectory);
+                                System.out.println("Mappen " + createdDirectory.getName() + " er oprettet.");
+                            }
                         }
                         pressEnterToContinue();
                     }
