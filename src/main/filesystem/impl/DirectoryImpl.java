@@ -1,8 +1,6 @@
 package main.filesystem.impl;
 
-import main.filesystem.Directory;
-import main.filesystem.DirectoryEntry;
-import main.filesystem.File;
+import main.filesystem.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,6 +47,37 @@ class DirectoryImpl extends DirectoryEntryImpl implements Directory {
             }
         });
         return sortedChildren;
+    }
+
+    @Override
+    public void visitFiles(FileVisitor visitor) {
+        for (DirectoryEntry entry : this) {
+            if (entry.isFile()) {
+                visitor.visit(entry.asFile());
+            } else if (entry.isDirectory()) {
+                entry.asDirectory().visitFiles(visitor);
+            }
+        }
+    }
+
+    @Override
+    public void visitDirectories(DirectoryVisitor visitor) {
+        for (DirectoryEntry entry : this) {
+            if (entry.isDirectory()) {
+                visitor.visit(entry.asDirectory());
+                entry.asDirectory().visitDirectories(visitor);
+            }
+        }
+    }
+
+    @Override
+    public void visitDirectoryEntries(DirectoryEntryVisitor visitor) {
+        for (DirectoryEntry entry : this) {
+            visitor.visit(entry);
+            if (entry.isDirectory()) {
+                entry.asDirectory().visitDirectoryEntries(visitor);
+            }
+        }
     }
 
     @Override

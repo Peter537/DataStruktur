@@ -11,6 +11,12 @@ public interface Directory extends DirectoryEntry, Iterable<DirectoryEntry> {
 
 	ArrayList<DirectoryEntry> getSortedChildren();
 
+	void visitFiles(FileVisitor visitor);
+
+	void visitDirectories(DirectoryVisitor visitor);
+
+	void visitDirectoryEntries(DirectoryEntryVisitor visitor);
+
 	default boolean containsFileNamed(String fileName) {
 		for (DirectoryEntry entry : this) {
 			if (entry.isFile() && entry.getName().equalsIgnoreCase(fileName)) {
