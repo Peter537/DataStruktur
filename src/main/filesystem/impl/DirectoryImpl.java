@@ -81,6 +81,36 @@ class DirectoryImpl extends DirectoryEntryImpl implements Directory {
     }
 
     @Override
+    public File getFile(String name) throws IOException {
+        for (DirectoryEntry entry : this) {
+            if (entry.isFile() && entry.getName().equalsIgnoreCase(name)) {
+                return entry.asFile();
+            }
+        }
+        throw new IOException("Der er ingen fil med navnet '" + name + "' i denne mappe!");
+    }
+
+    @Override
+    public Directory getDirectory(String name) throws IOException {
+        for (DirectoryEntry entry : this) {
+            if (entry.isDirectory() && entry.getName().equalsIgnoreCase(name)) {
+                return entry.asDirectory();
+            }
+        }
+        throw new IOException("Der er ingen mappe med navnet '" + name + "' i denne mappe!");
+    }
+
+    @Override
+    public DirectoryEntry getEntry(String name) throws IOException {
+        for (DirectoryEntry entry : this) {
+            if (entry.getName().equalsIgnoreCase(name)) {
+                return entry;
+            }
+        }
+        throw new IOException("Der er ingen fil eller mappe med navnet '" + name + "' i denne mappe!");
+    }
+
+    @Override
     public boolean isDirectory() {
         return true;
     }
