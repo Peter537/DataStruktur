@@ -17,17 +17,12 @@ class DirectoryImpl extends DirectoryEntryImpl implements Directory {
     }
 
     @Override
-    public void addChild(DirectoryEntry entry) {
-        children.add(entry);
-    }
-
-    @Override
     public File createFile(String name, String content) throws IOException {
         if(containsFileNamed(name)) {
             throw new IOException("File '" + name + "' already exists!");
         }
         File f = new FileImpl(name, content);
-        addChild(f);
+        children.add(f);
         return f;
     }
 
@@ -37,7 +32,7 @@ class DirectoryImpl extends DirectoryEntryImpl implements Directory {
             throw new IOException("Directory '" + name + "' already exists!");
         }
         Directory d = new DirectoryImpl(name);
-        addChild(d);
+        children.add(d);
         return d;
     }
 
