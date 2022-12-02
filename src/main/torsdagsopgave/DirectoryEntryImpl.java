@@ -3,43 +3,13 @@ package main.torsdagsopgave;
 public abstract class DirectoryEntryImpl implements DirectoryEntry {
 
     private final String name;
-    private final boolean isDirectory;
-    private final boolean isFile;
 
-    public DirectoryEntryImpl(String name, boolean isDirectory, boolean isFile) {
+    protected DirectoryEntryImpl(String name) {
         this.name = name;
-        this.isDirectory = isDirectory;
-        this.isFile = isFile;
     }
 
     @Override
     public String getName() {
         return this.name;
-    }
-
-    @Override
-    public boolean isDirectory() {
-        return this.isDirectory;
-    }
-
-    @Override
-    public boolean isFile() {
-        return this.isFile;
-    }
-
-    @Override
-    public File asFile() {
-        if (!this.isFile()) {
-            throw new UnsupportedOperationException("Not a file");
-        }
-        return (File) this;
-    }
-
-    @Override
-    public Directory asDirectory() {
-        if (!this.isDirectory()) {
-            throw new UnsupportedOperationException("Not a directory");
-        }
-        return (Directory) this;
     }
 }

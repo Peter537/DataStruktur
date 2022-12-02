@@ -7,7 +7,7 @@ public class DirectoryImpl extends DirectoryEntryImpl implements Directory {
     private final ArrayList<DirectoryEntry> children = new ArrayList<>();
 
     public DirectoryImpl(String name) {
-        super(name, true, false);
+        super(name);
     }
 
     @Override
@@ -53,5 +53,25 @@ public class DirectoryImpl extends DirectoryEntryImpl implements Directory {
     		}
     	}
     	return false;
+    }
+
+    @Override
+    public boolean isDirectory() {
+        return true;
+    }
+
+    @Override
+    public boolean isFile() {
+        return false;
+    }
+
+    @Override
+    public File asFile() {
+        throw new UnsupportedOperationException("Not a file");
+    }
+
+    @Override
+    public Directory asDirectory() {
+        return this;
     }
 }
