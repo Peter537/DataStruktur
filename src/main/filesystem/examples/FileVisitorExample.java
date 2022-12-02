@@ -1,6 +1,7 @@
 package main.filesystem.examples;
 
 import main.filesystem.Directory;
+import main.filesystem.DirectoryEntryVisitor;
 import main.filesystem.File;
 import main.filesystem.FileSystem;
 import main.filesystem.impl.FileSystemImpl;
@@ -38,9 +39,12 @@ public class FileVisitorExample {
         System.out.println("FILES AND DIRECTORIES:");
         System.out.println();
         root.visitDirectoryEntries(e -> {
-            System.out.println(e.getFullName());
-            if (e instanceof File) {
+            System.out.print(e.getFullName());
+            if (e.isFile()) {
+                System.out.println(" -> File");
                 System.out.println(" -> " + e.asFile().getContent());
+            } else if (e.isDirectory()) {
+                System.out.println(" -> Directory");
             }
         });
     }
