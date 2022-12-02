@@ -8,7 +8,7 @@ public class FileSystemImpl implements FileSystem {
     private final Directory root;
 
     public FileSystemImpl() {
-        this.root = new DirectoryImpl("root");
+        this.root = new DirectoryImpl(null, "root");
     }
 
     @Override

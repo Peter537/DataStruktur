@@ -12,8 +12,8 @@ class DirectoryImpl extends DirectoryEntryImpl implements Directory {
 
     private final ArrayList<DirectoryEntry> children = new ArrayList<>();
 
-    protected DirectoryImpl(String name) {
-        super(name);
+    protected DirectoryImpl(Directory parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -21,7 +21,7 @@ class DirectoryImpl extends DirectoryEntryImpl implements Directory {
         if(containsFileNamed(name)) {
             throw new IOException("File '" + name + "' already exists!");
         }
-        File f = new FileImpl(name, content);
+        File f = new FileImpl(this, name, content);
         children.add(f);
         return f;
     }
@@ -31,7 +31,7 @@ class DirectoryImpl extends DirectoryEntryImpl implements Directory {
         if(containsDirectoryNamed(name)) {
             throw new IOException("Directory '" + name + "' already exists!");
         }
-        Directory d = new DirectoryImpl(name);
+        Directory d = new DirectoryImpl(this, name);
         children.add(d);
         return d;
     }

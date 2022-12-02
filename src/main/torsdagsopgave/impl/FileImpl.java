@@ -7,8 +7,8 @@ class FileImpl extends DirectoryEntryImpl implements File {
 
     private String content;
 
-    protected FileImpl(String name, String content) {
-        super(name);
+    protected FileImpl(Directory parent, String name, String content) {
+        super(parent, name);
         this.content = content;
     }
 
