@@ -17,6 +17,12 @@ public interface Directory extends DirectoryEntry, Iterable<DirectoryEntry> {
 
 	void visitDirectoryEntries(DirectoryEntryVisitor visitor);
 
+	File getFile(String name) throws IOException;
+
+	Directory getDirectory(String name) throws IOException;
+
+	DirectoryEntry getEntry(String name) throws IOException;
+
 	default boolean containsFileNamed(String fileName) {
 		for (DirectoryEntry entry : this) {
 			if (entry.isFile() && entry.getName().equalsIgnoreCase(fileName)) {
@@ -29,6 +35,15 @@ public interface Directory extends DirectoryEntry, Iterable<DirectoryEntry> {
 	default boolean containsDirectoryNamed(String directoryName) {
 		for (DirectoryEntry entry : this) {
 			if (entry.isDirectory() && entry.getName().equalsIgnoreCase(directoryName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	default boolean containsEntryNamed(String entryName) {
+		for (DirectoryEntry entry : this) {
+			if (entry.getName().equalsIgnoreCase(entryName)) {
 				return true;
 			}
 		}
