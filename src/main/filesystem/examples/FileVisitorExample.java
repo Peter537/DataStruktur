@@ -42,6 +42,7 @@ public class FileVisitorExample {
                 System.out.println("Directory: " + e.getFullName());
             } else {
                 System.out.println("File: " + e.getFullName());
+                System.out.println(" -> " + e.asFile().getContent());
             }
         });
     }
