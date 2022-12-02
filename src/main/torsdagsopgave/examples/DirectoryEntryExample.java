@@ -53,6 +53,7 @@ public class DirectoryEntryExample {
                         if (createdFile != null) {
                             if (directory.containsFileNamed(createdFile.getName())) {
                                 System.out.println("Der findes allerede en fil med navnet " + createdFile.getName());
+                                System.out.println("Den nye fil blev ikke oprettet.");
                             } else {
                                 directory.addChild(createdFile);
                                 System.out.println("Filen " + createdFile.getName() + " blev oprettet.");
@@ -65,6 +66,7 @@ public class DirectoryEntryExample {
                         if (createdDirectory != null) {
                             if (directory.containsDirectoryNamed(createdDirectory.getName())) {
                                 System.out.println("Der findes allerede en mappe med navnet " + createdDirectory.getName());
+                                System.out.println("Den nye mappe blev ikke oprettet.");
                             } else {
                                 directory.addChild(createdDirectory);
                                 System.out.println("Mappen " + createdDirectory.getName() + " er oprettet.");
