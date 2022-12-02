@@ -1,6 +1,8 @@
-package main.torsdagsopgave;
+package main.torsdagsopgave.impl;
 
-public abstract class DirectoryEntryImpl implements DirectoryEntry {
+import main.torsdagsopgave.DirectoryEntry;
+
+abstract class DirectoryEntryImpl implements DirectoryEntry {
 
     private final String name;
 

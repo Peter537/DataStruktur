@@ -1,19 +1,44 @@
-package main.torsdagsopgave;
+package main.torsdagsopgave.impl;
 
+import main.torsdagsopgave.Directory;
+import main.torsdagsopgave.DirectoryEntry;
+import main.torsdagsopgave.File;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class DirectoryImpl extends DirectoryEntryImpl implements Directory {
+class DirectoryImpl extends DirectoryEntryImpl implements Directory {
 
     private final ArrayList<DirectoryEntry> children = new ArrayList<>();
 
-    public DirectoryImpl(String name) {
+    protected DirectoryImpl(String name) {
         super(name);
     }
 
     @Override
     public void addChild(DirectoryEntry entry) {
         children.add(entry);
+    }
+
+    @Override
+    public File createFile(String name, String content) throws IOException {
+        if(containsFileNamed(name)) {
+            throw new IOException("File '" + name + "' already exists!");
+        }
+        File f = new FileImpl(name, content);
+        addChild(f);
+        return f;
+    }
+
+    @Override
+    public Directory createSubDirectory(String name) throws IOException {
+        if(containsDirectoryNamed(name)) {
+            throw new IOException("Directory '" + name + "' already exists!");
+        }
+        Directory d = new DirectoryImpl(name);
+        addChild(d);
+        return d;
     }
 
     @Override

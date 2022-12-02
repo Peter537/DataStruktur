@@ -1,10 +1,13 @@
-package main.torsdagsopgave;
+package main.torsdagsopgave.impl;
 
-public class FileImpl extends DirectoryEntryImpl implements File {
+import main.torsdagsopgave.Directory;
+import main.torsdagsopgave.File;
+
+class FileImpl extends DirectoryEntryImpl implements File {
 
     private String content;
 
-    public FileImpl(String name, String content) {
+    protected FileImpl(String name, String content) {
         super(name);
         this.content = content;
     }
