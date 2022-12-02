@@ -1,8 +1,8 @@
 package main.filesystem.examples;
 
 import main.filesystem.Directory;
+import main.filesystem.File;
 import main.filesystem.FileSystem;
-import main.filesystem.FileVisitor;
 import main.filesystem.impl.FileSystemImpl;
 
 import java.io.IOException;
@@ -15,12 +15,12 @@ public class FileVisitorExample {
         Directory dir1 = root.createSubDirectory("dir1");
         Directory dir2 = dir1.createSubDirectory("dir2");
         Directory dir3 = dir2.createSubDirectory("dir3");
-        dir3.createFile("file1", "content1");
-        dir3.createFile("file2", "content2");
-        dir2.createFile("file3", "content3");
-        dir1.createFile("file4", "content4");
+        dir3.createFile("file1.txt", "content1");
+        dir3.createFile("file2.txt", "content2");
+        dir2.createFile("file3.txt", "content3");
+        dir1.createFile("file4.txt", "content4");
         Directory dir4 = dir2.createSubDirectory("dir4");
-        dir4.createFile("file5", "content5");
+        dir4.createFile("file5.txt", "content5");
 
         System.out.println("FILES:");
         System.out.println();
@@ -38,10 +38,8 @@ public class FileVisitorExample {
         System.out.println("FILES AND DIRECTORIES:");
         System.out.println();
         root.visitDirectoryEntries(e -> {
-            if (e instanceof Directory) {
-                System.out.println("Directory: " + e.getFullName());
-            } else {
-                System.out.println("File: " + e.getFullName());
+            System.out.println(e.getFullName());
+            if (e instanceof File) {
                 System.out.println(" -> " + e.asFile().getContent());
             }
         });
