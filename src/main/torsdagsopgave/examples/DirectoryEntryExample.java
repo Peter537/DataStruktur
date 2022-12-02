@@ -87,7 +87,7 @@ public class DirectoryEntryExample {
     }
 
     private void showDirectory(Directory directory) {
-        System.out.println("Indhold af " + directory.getName() + ":");
+        System.out.println("Indhold af " + directory.getFullName() + ":");
         int i = 1;
         for (DirectoryEntry entry : directory.getSortedChildren()) {
             System.out.println("  " + i + ") " + entry.getName());
@@ -98,7 +98,7 @@ public class DirectoryEntryExample {
     private void chooseDirectoryOrFile(Directory currentDirectory) throws IOException {
         while (true) {
             try {
-                System.out.println("Indhold af " + currentDirectory.getName() + ":");
+                System.out.println("Indhold af " + currentDirectory.getFullName() + ":");
                 ArrayList<DirectoryEntry> entries = currentDirectory.getSortedChildren();
                 int i = 1;
                 for (DirectoryEntry entry : entries) {

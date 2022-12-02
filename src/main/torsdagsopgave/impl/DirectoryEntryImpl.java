@@ -22,4 +22,12 @@ abstract class DirectoryEntryImpl implements DirectoryEntry {
     public Directory getParent() {
         return this.parent;
     }
+
+    @Override
+    public String getFullName() {
+        if (getParent() == null) {
+            return getName() + ":"; // root
+        }
+        return getParent().getFullName() + "/" + getName();
+    }
 }

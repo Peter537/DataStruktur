@@ -4,6 +4,8 @@ public interface DirectoryEntry {
 
 	String getName();
 
+	String getFullName();
+
 	Directory getParent();
 
 	boolean isDirectory();
