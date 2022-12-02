@@ -16,11 +16,6 @@ public class DirectoryImpl extends DirectoryEntryImpl implements Directory {
     }
 
     @Override
-    public Iterable<DirectoryEntry> getChildren() {
-        return this.children;
-    }
-
-    @Override
     public ArrayList<DirectoryEntry> getSortedChildren() {
         ArrayList<DirectoryEntry> sortedChildren = new ArrayList<>(this.children);
         sortedChildren.sort((o1, o2) -> {
