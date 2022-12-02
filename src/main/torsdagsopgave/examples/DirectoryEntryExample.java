@@ -16,15 +16,15 @@ public class DirectoryEntryExample {
     }
 
     public void run() {
-        Directory root = new DirectoryImpl("root");
+        FileSystem fileSystem = new FileSystemImpl();
         while (true) {
-            System.out.println("Du er i " + root.getName());
+            System.out.println("Du er i " + fileSystem.getRoot().getName());
             System.out.println("Vil du forlade programmet? (ja/nej)");
             String choice = scanner.nextLine();
             if (choice.equalsIgnoreCase("ja")) {
                 break;
             } else if (choice.equalsIgnoreCase("nej")) {
-                inDirectory(root);
+                inDirectory(fileSystem.getRoot());
             } else {
                 System.out.println("Forkert svar. Prøv igen.");
             }
