@@ -1,7 +1,9 @@
 package main.torsdagsopgave.examples;
 
 import main.torsdagsopgave.*;
+import main.torsdagsopgave.impl.FileSystemImpl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,12 +12,12 @@ public class DirectoryEntryExample {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         DirectoryEntryExample example = new DirectoryEntryExample();
         example.run();
     }
 
-    public void run() {
+    public void run() throws IOException {
         FileSystem fileSystem = new FileSystemImpl();
         while (true) {
             System.out.println("Du er i " + fileSystem.getRoot().getName());
@@ -31,7 +33,7 @@ public class DirectoryEntryExample {
         }
     }
 
-    private void inDirectory(Directory directory) {
+    private void inDirectory(Directory directory) throws IOException {
         while (true) {
             try {
                 System.out.println("Du er i " + directory.getName());
@@ -49,28 +51,25 @@ public class DirectoryEntryExample {
                         return;
                     }
                     case 1 -> {
-                        File createdFile = createFile();
-                        if (createdFile != null) {
-                            if (directory.containsFileNamed(createdFile.getName())) {
-                                System.out.println("Der findes allerede en fil med navnet " + createdFile.getName());
-                                System.out.println("Den nye fil blev ikke oprettet.");
-                            } else {
-                                directory.addChild(createdFile);
-                                System.out.println("Filen " + createdFile.getName() + " blev oprettet.");
-                            }
+                        String name = getUserInput("Filnavn: ");
+                        String content = getUserInput("Filindhold: ");
+                        System.out.println();
+                        if (!directory.containsFileNamed(name)) {
+                            File createdFile = directory.createFile(name, content);
+                            System.out.println("Filen '" + createdFile.getName() + "' oprettet.");
+                        } else {
+                            System.out.println("Filen findes allerede.");
                         }
                         pressEnterToContinue();
                     }
                     case 2 -> {
-                        Directory createdDirectory = createDirectory();
-                        if (createdDirectory != null) {
-                            if (directory.containsDirectoryNamed(createdDirectory.getName())) {
-                                System.out.println("Der findes allerede en mappe med navnet " + createdDirectory.getName());
-                                System.out.println("Den nye mappe blev ikke oprettet.");
-                            } else {
-                                directory.addChild(createdDirectory);
-                                System.out.println("Mappen " + createdDirectory.getName() + " er oprettet.");
-                            }
+                        String name = getUserInput("Mappenavn: ");
+                        System.out.println();
+                        if (!directory.containsDirectoryNamed(name)) {
+                            Directory createdDirectory = directory.createSubDirectory(name);
+                            System.out.println("Mappen '" + createdDirectory.getName() + "' oprettet.");
+                        } else {
+                            System.out.println("Mappen findes allerede.");
                         }
                         pressEnterToContinue();
                     }
@@ -96,7 +95,7 @@ public class DirectoryEntryExample {
         }
     }
 
-    private void chooseDirectoryOrFile(Directory currentDirectory) {
+    private void chooseDirectoryOrFile(Directory currentDirectory) throws IOException {
         while (true) {
             try {
                 System.out.println("Indhold af " + currentDirectory.getName() + ":");
@@ -163,32 +162,14 @@ public class DirectoryEntryExample {
         }
     }
 
-    private File createFile() {
-        System.out.print("Skriv filnavn (ENTER for tilbage): ");
-        String name = scanner.nextLine();
-        if (name.equals("")) {
-            return null;
-        }
-        System.out.print("Skriv filindhold (ENTER for tilbage): ");
-        String content = scanner.nextLine();
-        if (content.equals("")) {
-            return null;
-        }
-        return new FileImpl(name, content);
-    }
-
-    private Directory createDirectory() {
-        System.out.print("Skriv directorynavn (ENTER for tilbage): ");
-        String name = scanner.nextLine();
-        if (name.equals("")) {
-            return null;
-        }
-        return new DirectoryImpl(name);
-    }
-
     private void pressEnterToContinue() {
         System.out.println();
         System.out.println("Tryk enter for at fortsætte");
         scanner.nextLine();
+    }
+
+    public String getUserInput(String msg) {
+        System.out.println(msg);
+        return scanner.nextLine();
     }
 }
