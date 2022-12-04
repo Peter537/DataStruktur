@@ -32,21 +32,24 @@ public class FileSystemExample {
         FileSystem fileSystem = new FileSystemImpl();
         createDefaultFiles(fileSystem);
         while (true) {
+            clearConsole();
             System.out.println("Du er i " + fileSystem.getRoot().getName());
             System.out.println("Vil du forlade programmet? (ja/nej)");
-            String choice = scanner.nextLine();
+            String choice = getUserInput("Vil du forlade programmet? (ja/nej): ");
             if (choice.equalsIgnoreCase("ja")) {
                 break;
             } else if (choice.equalsIgnoreCase("nej")) {
                 inDirectory(fileSystem.getRoot());
             } else {
                 System.out.println("Forkert svar. Prøv igen.");
+                pressEnterToContinue();
             }
         }
     }
 
     private void inDirectory(Directory directory) throws IOException {
         while (true) {
+            clearConsole();
             System.out.println("Du er i " + directory.getFullName());
             System.out.println();
             System.out.println("Vælg en af følgende:");
@@ -55,7 +58,7 @@ public class FileSystemExample {
             System.out.println("  2) Opret en mappe");
             System.out.println("  3) Se indhold af en mappe");
             System.out.println("  4) Vælg en mappe eller en fil");
-            String choice = scanner.nextLine();
+            String choice = getUserInput("Skriv dit valg: ");
             switch (choice) {
                 case "0" -> {
                     return;
@@ -93,6 +96,7 @@ public class FileSystemExample {
     }
 
     private void showDirectory(Directory directory) {
+        clearConsole();
         System.out.println("Indhold af " + directory.getFullName());
         for (DirectoryEntry entry : directory.getSortedChildren()) {
             System.out.println("  -> " + entry.getName() + " (" + (entry.isDirectory() ? "mappe" : "fil") + ")");
@@ -101,10 +105,10 @@ public class FileSystemExample {
 
     private void chooseDirectoryOrFile(Directory directory) throws IOException {
         while (true) {
+            clearConsole();
             showDirectory(directory);
             System.out.println();
-            System.out.print("Vælg en mappe eller fil: ");
-            String searchName = scanner.nextLine();
+            String searchName = getUserInput("Skriv navnet på en mappe eller fil: ");
             if (!directory.containsEntryNamed(searchName)) {
                 System.out.println("Der fandtes ingen mapper eller filer med navnet '" + searchName + "'.");
                 continue;
@@ -122,13 +126,13 @@ public class FileSystemExample {
 
     private void showFile(File file) {
         while (true) {
+            clearConsole();
             System.out.println("Du har valgt filen " + file.getName());
             System.out.println("Vælg en af følgende muligheder:");
             System.out.println("  0) Tilbage");
             System.out.println("  1) Se indhold");
             System.out.println("  2) Rediger indhold");
-            System.out.print("Skriv dit valg: ");
-            String choice = scanner.nextLine();
+            String choice = getUserInput("Skriv dit valg: ");
             switch (choice) {
                 case "0" -> {
                     return;
@@ -142,8 +146,7 @@ public class FileSystemExample {
                 case "2" -> {
                     clearConsole();
                     System.out.println("Hvilket nye filindhold vil du have i filen '" + file.getName() + "'?");
-                    System.out.print("Skriv nyt filindhold: ");
-                    String content = scanner.nextLine();
+                    String content = getUserInput("Skriv nyt filindhold: ");
                     file.setContent(content);
                     pressEnterToContinue();
                 }
@@ -158,7 +161,7 @@ public class FileSystemExample {
     }
 
     private String getUserInput(String msg) {
-        System.out.println(msg);
+        System.out.print(msg);
         return scanner.nextLine();
     }
 
